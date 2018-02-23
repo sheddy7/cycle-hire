@@ -1,0 +1,18 @@
+Senior Software Engineer - Technical Test
+
+Your task is to write a web application that pulls data from the following open api for bike hire in London: http://cyclehire.eu/cycleHire.json
+
+This web application should consist of two parts:
+Server side part that talks to the API, written in NodeJs.
+Client side part that communicates with the server and displays the data (entirely up to you how), written in ReactJS.
+
+This is designed to be a fairly open ended task, so feel free to add additional features, frameworks and/or technologies as you see fit, but key things we will be looking for are:
+Well structured, modular code.
+Unit tests covering the code you write.
+Defensively written code for handling potential error states (such as the API not being available).
+
+At the end of the test, you must:
+Provide source code (via a shared link to a public github or bitbucket repo) before 23:59:59 Friday 10th March 2017.
+Include a README file in the root of your project that walks a user through installing and running the app.
+
+Part of your face to face interview will then consist of talking through how you met the goals of the task, any extra features/tech you added and discussing key parts of the code.
