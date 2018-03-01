@@ -1,29 +1,20 @@
 import React, { Component } from 'react';
 
-import * as restClient from './lib/rest-client';
+import BikeGraph from './components/BikeGraph';
 
-import logo from './logo.svg';
-import './App.css';
+import logo from './assets/bike.svg';
+import './assets/App.css';
 
 class App extends Component {
-
-  componentDidMount() {
-    restClient.getJson('/api/test')
-    .then(resp => {
-      console.log(resp);
-    })
-  }
 
   render() {
     return (
       <div className="App">
         <header className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
+          <h1 className="App-title">Cycle hire example app</h1>
         </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
+        <BikeGraph />
       </div>
     );
   }

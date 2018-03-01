@@ -2,6 +2,11 @@
   "name": "cycle-hire-client",
   "version": "0.1.0",
   "dependencies": {
+    "d3": "^4.13.0",
+    "d3-axis": "^1.0.8",
+    "d3-interpolate": "^1.1.6",
+    "d3-scale": "^2.0.0",
+    "d3-selection": "^1.3.0",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
     "react-scripts": "1.1.1"

@@ -7,12 +7,14 @@ const defaultHeaders = {
   'Content-Type': 'application/json'
 };
 
+const filterBikeStations = (data) => ({
+  data: data.stations.slice(0, 10)
+});
+
 export const fetchCycleHireData = (req, res, next) => {
 
   fetch(url, defaultHeaders)
   .then(resp => resp.json())
-  .then(resp => {
-    res.send(resp);
-  });
+  .then(resp => res.send(filterBikeStations(resp)));
 
 };
