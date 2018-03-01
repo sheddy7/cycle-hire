@@ -1,16 +1,10 @@
 import React, { Component } from 'react';
 import { scaleBand, scaleLinear } from 'd3-scale';
 
-import Axes from './Axes'
+import Axes from './Axes';
+import Bars from './Bars';
+import ResponsiveWrapper from './ResponsiveWrapper'
 import * as restClient from '../lib/rest-client';
-
-const data = [
-  { title: 'blah', value: 34, year: 84 },
-  { title: 'sdfdsf', value: 25, year: 99 },
-  { title: 'ererw', value: 12, year: 87 },
-  { title: 'ujkuk', value: 87, year: 56 },
-  { title: 'tyhnnn', value: 45, year: 66 }
-];
 
 class BikeGraph extends Component {
 
@@ -28,16 +22,23 @@ class BikeGraph extends Component {
     restClient.getJson('/api/bike-data')
     .then(resp => {
       this.setState({
-        data: resp
+        data: resp.data
       });
     });
   };
 
   render() {
-    const margins = { top: 50, right: 20, bottom: 100, left: 60 };
-    const svgDimensions = { width: 800, height: 500 };
+    const data = this.state.data;
 
-    const maxValue = Math.max(...data.map(d => d.value));
+    if (!data) return null;
+console.log(data);
+    const margins = { top: 50, right: 20, bottom: 100, left: 60 };
+    const svgDimensions = {
+      width: Math.max(this.props.parentWidth, 300),
+      height: 500
+    };
+
+    const maxValue = Math.max(...data.map(d => d.nbBikes));
 
     // scaleBand type
     const xScale = this.xScale
@@ -50,7 +51,7 @@ class BikeGraph extends Component {
      // scaleLinear type
     const yScale = this.yScale
        // scaleLinear domain required at least two values, min and max
-      .domain([0, maxValue])
+      .domain([0, maxValue + 10])
       .range([svgDimensions.height - margins.bottom, margins.top]);
 
     return (
@@ -61,6 +62,14 @@ class BikeGraph extends Component {
             margins={margins}
             svgDimensions={svgDimensions}
           />
+
+          <Bars
+            scales={{ xScale, yScale }}
+            margins={margins}
+            data={data}
+            maxValue={maxValue}
+            svgDimensions={svgDimensions}
+          />
         </svg>
       </div>
     )
@@ -68,4 +77,4 @@ class BikeGraph extends Component {
 
 };
 
-export default BikeGraph;
+export default ResponsiveWrapper(BikeGraph);
