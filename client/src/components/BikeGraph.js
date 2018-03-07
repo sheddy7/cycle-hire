@@ -31,8 +31,8 @@ class BikeGraph extends Component {
     const data = this.state.data;
 
     if (!data) return null;
-console.log(data);
-    const margins = { top: 50, right: 20, bottom: 100, left: 60 };
+
+    const margins = { top: 50, right: 30, bottom: 150, left: 60 };
     const svgDimensions = {
       width: Math.max(this.props.parentWidth, 300),
       height: 500
@@ -42,10 +42,8 @@ console.log(data);
 
     // scaleBand type
     const xScale = this.xScale
-      .padding(0.5)
-      // scaleBand domain should be an array of specific values
-      // in our case, we want to use movie titles
-      .domain(data.map(d => d.title))
+      .padding(0.3)
+      .domain(data.map(d => d.name))
       .range([margins.left, svgDimensions.width - margins.right]);
 
      // scaleLinear type
